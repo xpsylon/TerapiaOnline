@@ -4,5 +4,6 @@ from django.http import HttpResponse
 def home(request):
     return render(request, 'users/home.html')
 
-def base(request):
-    return render(request, 'users/base.html')
+#QUEDA PARA TESTEAR base.html CADA TANTO:
+""" def base(request):
+    return render(request, 'users/base.html') """
