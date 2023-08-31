@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'therapists.apps.TherapistsConfig',
-    'users.apps.UsersConfig', 
+    'users.apps.UsersConfig',
+    'main.apps.MainConfig',
     'crispy_forms',
     'crispy_bootstrap5',
 ]
