@@ -21,4 +21,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
+    #Getting the Django pre-built auth urls:
+    path('', include('django.contrib.auth.urls')),
 ]
