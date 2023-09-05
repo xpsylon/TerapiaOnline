@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('main.urls')),
     #Getting the Django pre-built auth urls:
     path('', include('django.contrib.auth.urls')),
+    path('', include('users.urls')),
 ]
