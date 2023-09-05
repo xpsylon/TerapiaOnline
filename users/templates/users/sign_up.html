@@ -1,10 +1,10 @@
 {% extends "main/base.html" %}
-
-{% block titulo %}Sign up{% endblock titulo %}
-
 {% load crispy_forms_tags %}
 
+{% block titulo %}Registro usuarios{% endblock titulo %}
+
 {% block contenido %}
+
     <form method="post">
         {% csrf_token %}
         {{ formulario|crispy }}
