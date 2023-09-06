@@ -7,4 +7,4 @@ def registro(request):
     else:
         form = UserRegisterForm()
 
-    return render(request, 'users/sign_up.html', {'formulario':form})
+    return render(request, 'users/register.html', {'formulario':form})
