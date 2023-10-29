@@ -5,5 +5,5 @@ def home(request):
     return render(request, 'main/home.html')
 
 #QUEDA PARA TESTEAR base.html CADA TANTO:
-""" def base(request):
-    return render(request, 'main/base.html') """
+def base(request):
+    return render(request, 'main/base.html')
