@@ -137,3 +137,5 @@ LOGIN_REDIRECT_URL = 'main:casa'
 #aqui, al no tener un urlpattern propio, sino que viene del paquete prestablecido django.contrib.auth.urls, se usa la ruta prestablecida login
 LOGOUT_REDIRECT_URL = '/login' 
 
+#por default login esta en accounts/login
+LOGIN_URL = '/login'
