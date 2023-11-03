@@ -138,4 +138,4 @@ LOGIN_REDIRECT_URL = 'main:casa'
 LOGOUT_REDIRECT_URL = '/login' 
 
 #por default login esta en accounts/login
-LOGIN_URL = '/login'
+LOGIN_URL = 'login'
