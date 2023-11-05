@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request, 'main/home.html')
 
+def nuevo_posteo(request):
+    if request.method == 'POST'
+
 #QUEDA PARA TESTEAR base.html CADA TANTO:
 def base(request):
     return render(request, 'main/base.html')
