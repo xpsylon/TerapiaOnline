@@ -1,13 +1,25 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from .forms import PostForm
+from django.urls import reverse
 
 @login_required
 def home(request):
     return render(request, 'main/home.html')
 
+@login_required
 def nuevo_posteo(request):
-    if request.method == 'POST'
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+        return redirect(reverse('main:casa'))
+    else:
+        form = PostForm()
+    return render(request, 'main/post_form.html', {'formulario':form})
+
 
 #QUEDA PARA TESTEAR base.html CADA TANTO:
 def base(request):

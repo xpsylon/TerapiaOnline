@@ -1,0 +1,13 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block titulo %}New Post{% endblock titulo %}
+
+{% block contenido %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ formulario|crispy }}
+        <button type="submit" class="btn btn-info">Post</button>
+    </form>
+{% endblock contenido %}
