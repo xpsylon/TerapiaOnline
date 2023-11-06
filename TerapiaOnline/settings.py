@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'therapists.apps.TherapistsConfig',
     'users.apps.UsersConfig',
     'main.apps.MainConfig',
+    'blog.apps.BlogConfig', 
     'crispy_forms',
     'crispy_bootstrap5',
 ]
