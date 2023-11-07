@@ -1,17 +1,16 @@
 from django.shortcuts import render, redirect
 from .forms import UserRegisterForm
 from django.contrib.auth import login, logout
+from django.contrib import messages
 
 def registro(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            #guarda los datos del form en variable user:
-            user = form.save()
-            #aparte loginea al user recien creado (previamente hay que importar el metodo login)
-            #en Project Three es diferente, se crea perfil y el redirect es a login para obviamente loginearse:
-            login(request, user)
-            return redirect('main:casa')
+            form.save()            
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Cuenta creada para {username}. Ya puede iniciar sesion')
+            return redirect ('users:login')
     else:
         form = UserRegisterForm()
 
