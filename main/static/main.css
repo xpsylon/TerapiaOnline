@@ -82,3 +82,8 @@ body {
   .account-heading {
     font-size: 2.5rem;
   }
+
+  .bold-underline {
+    font-weight: bold !important;
+    text-decoration: underline !important;
+  }
