@@ -86,5 +86,5 @@ body {
   .bold-underline {
     font-weight: bold;
     text-decoration: underline;
-    color: crimson;
+    margin-right: 90px;
   }
