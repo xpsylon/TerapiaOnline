@@ -84,6 +84,7 @@ body {
   }
 
   .bold-underline {
-    font-weight: bold !important;
-    text-decoration: underline !important;
+    font-weight: bold;
+    text-decoration: underline;
+    color: crimson;
   }
