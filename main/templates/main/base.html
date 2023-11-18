@@ -6,7 +6,7 @@
     <title>{% block titulo %}My Site{% endblock titulo %}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}">
     <!-- el link a main.css va sin folder xq esta en la misma app que base.html (este archivo) -->
 
 </head>
@@ -26,7 +26,7 @@
                     <!--Navbar right side-->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
-                            <span class="navbar-text">Bienvenido {{user.username}}</span>
+                            <span class="navbar-text usuario" style="color:crimson">Bienvenido {{user.username}}</span>
                             <a class="nav-item nav-link" href="saratoga">Perfil</a>
                             <a class="nav-item nav-link" href="/logout">Logout</a>
                         {% else %}
