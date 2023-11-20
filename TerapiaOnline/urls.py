@@ -25,3 +25,25 @@ urlpatterns = [
     path('', include('users.urls', namespace='users')),
     path('blog/', include('blog.urls', namespace='blog'))
 ]
+
+"""
+URL Configuration for the Django project.
+
+The `urlpatterns` list routes URLs to views. For more information, please see:
+    https://docs.djangoproject.com/en/3.1/topics/http/urls/
+
+This configuration includes several URL patterns:
+
+- The admin site is available at '/admin/'.
+- The 'main' app's URLs are included at the root path ('/').
+- Django's built-in authentication views (login, logout, password change, etc.) are also included at the root path.
+- The 'users' app's URLs are included at the root path.
+- The 'blog' app's URLs are included at '/blog/'.
+
+Each included URL configuration is associated with a namespace:
+- 'main' for the 'main' app.
+- 'users' for the 'users' app.
+- 'blog' for the 'blog' app.
+
+Namespaces allow you to reverse URLs for included URL configurations. For example, you can use `reverse('blog:post_detail', args=[post_id])` to get the URL for a specific blog post.
+"""

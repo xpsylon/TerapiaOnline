@@ -26,7 +26,7 @@
                     <!--Navbar right side-->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
-                            <span class="navbar-text usuario" style="color:crimson">Bienvenido {{user.username}}</span>
+                            <span class="navbar-text usuario">Bienvenido {{user.username}}</span>
                             <a class="nav-item nav-link" href="saratoga">Perfil</a>
                             <a class="nav-item nav-link" href="/logout">Logout</a>
                         {% else %}

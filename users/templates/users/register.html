@@ -4,11 +4,21 @@
 {% block titulo %}Registro usuarios{% endblock titulo %}
 
 {% block contenido %}
-
-    <form method="post">
-        {% csrf_token %}
-        {{ formulario|crispy }}
-        <p>Have an account? Login <a href="/login">Here</a></p>
-        <button type="submit" class="btn btn-info">Register</button>
-    </form>
+    <div class="content-section">
+        <form method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Registrate ahora!</legend>
+                {{ formulario|crispy }}
+            </fieldset>
+            <div class="form-group"><!--la clase es para separar los bloques, en este caso el boton-->
+                <button type="submit" class="btn btn-outline-info">Register</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <p class="text-muted little-font">
+                Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+            </p>
+        </div>
+    </div>
 {% endblock contenido %}
