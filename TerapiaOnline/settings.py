@@ -31,18 +31,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
     'therapists.apps.TherapistsConfig',
     'users.apps.UsersConfig',
     'main.apps.MainConfig',
     'blog.apps.BlogConfig', 
     'crispy_forms',
     'crispy_bootstrap5',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
@@ -138,8 +138,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 LOGIN_REDIRECT_URL = 'main:casa'
 
 #aqui, al no tener un urlpattern propio, sino que viene del paquete prestablecido django.contrib.auth.urls, se usa la ruta prestablecida login
-#LOGOUT_REDIRECT_URL = 'users:login' 
+LOGOUT_REDIRECT_URL = 'users:logout' 
 
 #por default login esta en accounts/login
 LOGIN_URL = 'users:login'
-LOGOUT_URL = 'users:logout'
