@@ -27,7 +27,7 @@
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
                             <span class="navbar-text usuario">Bienvenido {{user.username}}</span>
-                            <a class="nav-item nav-link" href="saratoga">Perfil</a>
+                            <a class="nav-item nav-link" href="{% url 'users:perfil' %}">Perfil</a>
                             <a class="nav-item nav-link" href="{% url 'users:logout' %}">Logout</a>
                         {% else %}
                             <a class="nav-item nav-link" href="{% url 'users:login' %}">Login</a>

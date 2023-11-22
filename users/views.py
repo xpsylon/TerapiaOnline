@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import UserRegisterForm
 from django.contrib.auth import login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def registro(request):
     if request.method == 'POST':
@@ -15,3 +16,7 @@ def registro(request):
         form = UserRegisterForm()
 
     return render(request, 'users/register.html', {'formulario':form})
+
+login_required
+def profile(request):
+    return render(request, 'users/profile.html')
