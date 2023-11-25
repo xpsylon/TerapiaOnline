@@ -12,7 +12,8 @@ def create_profile(sender, instance, created, **kwargs):
 def save_profile(sender, instance, **kwargs):
     instance.profile.save()
     
-    """ 1. `from django.db.models.signals import post_save`: This line is importing the `post_save` signal from Django. This signal is sent at the end of the `save()` method of a model. The signal is provided with the sender (the model class), instance (the actual instance being saved), created (a boolean indicating whether a new record was created), and many other keyword arguments.
+""" 
+1. `from django.db.models.signals import post_save`: This line is importing the `post_save` signal from Django. This signal is sent at the end of the `save()` method of a model. The signal is provided with the sender (the model class), instance (the actual instance being saved), created (a boolean indicating whether a new record was created), and many other keyword arguments.
 
 2. `from django.contrib.auth.models import User`: This line is importing Django's built-in User model. The User model is the sender of the signal. In other words, the signal will be sent whenever a User instance is saved.
 
@@ -32,4 +33,5 @@ def save_profile(sender, instance, **kwargs):
 
 In summary, this code automatically creates and saves a Profile instance whenever a new User instance is created. This is a common pattern in Django for creating related records at the same time as a primary record. For example, you might use this pattern to automatically create a user profile, a shopping cart, or other related records when a new user signs up for your site. 
 
-I hope this helps! Let me know if you have any other questions. 😊 """
+I hope this helps! Let me know if you have any other questions.
+"""
