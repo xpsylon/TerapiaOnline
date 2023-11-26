@@ -27,7 +27,7 @@ def profile(request):
             user_form.save()
             prof_form.save()
             messages.success(request, f'Su cuenta ha sido actualizada')
-            return redirect('perfil')
+            return redirect('users:perfil')
     
     else:
         user_form = UserUpdateForm(instance=request.user)
