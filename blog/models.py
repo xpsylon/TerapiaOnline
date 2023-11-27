@@ -1,12 +1,22 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
+from django.utils import timezone
 
 class Post(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    description = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-
+    content = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    
     def __str__(self) -> str:
-        return self.title + '/n' + self.description
+        return self.title
+    
+       
+    """ 
+    PARA CUANDO ESTE EL POST-DETAIL LISTO:
+    def get_absolute_url(self):
+        return reverse("model_detail", kwargs={"pk": self.pk}) 
+    """
+    
+    
