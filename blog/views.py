@@ -2,6 +2,13 @@ from django.shortcuts import render, redirect
 from .forms import PostForm
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from .models import Post
+
+def post_list(request):
+    context = {
+        'manzanas': Post.objects.all()
+    }
+    return render(request, 'blog/posts.html', context)
 
 @login_required
 def nuevo_posteo(request):
