@@ -20,18 +20,18 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="{% url 'main:casa' %}">Home</a>
-                        <a class="nav-item nav-link" href="{% url 'blog:post-nuevo' %}">Blog</a>
+                        <a class="nav-link" href="{% url 'main:casa' %}">Home</a>
+                        <a class="nav-link" href="{% url 'blog:post-nuevo' %}">Blog</a>
                     </div>
                     <!--Navbar right side-->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
                             <span class="navbar-text usuario">Bienvenido {{user.username}}</span>
-                            <a class="nav-item nav-link" href="{% url 'users:perfil' %}">Perfil</a>
-                            <a class="nav-item nav-link" href="{% url 'users:logout' %}">Logout</a>
+                            <a class="nav-link" href="{% url 'users:perfil' %}">Perfil</a>
+                            <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
                         {% else %}
-                            <a class="nav-item nav-link" href="{% url 'users:login' %}">Login</a>
-                            <a class="nav-item nav-link" href="{% url 'users:registro' %}">Registrarse</a>
+                            <a class="nav-link" href="{% url 'users:login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'users:registro' %}">Registrarse</a>
                         {% endif %}
                     </div>
                 </div>

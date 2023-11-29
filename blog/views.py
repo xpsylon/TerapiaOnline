@@ -1,15 +1,31 @@
 from django.shortcuts import render, redirect
-from .forms import PostForm
+from .forms import PostForm #para CreatePost
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Post
+from django.views.generic import ListView
 
-def post_list(request):
+
+# With class based views, the system renders by default a template with the following convention name:
+# <app>/<model>_<viewtype>.html>
+# So in this case, the default template name would be:
+# blog/post_list.html
+class PostListView(ListView):
+    model = Post
+    ordering = ['-date_posted'] # Orden negativo date_posted. Del ultimo al primer posteo. Como en los mails.
+    
+    # IF OLD TEMPLATE AND LOOPING NAMES WOULD HAVE BEEN KEPT:
+    # context_object_name = 'manzanas'
+    # template_name = 'posts.html'
+
+""" def post_list(request):
     context = {
         'manzanas': Post.objects.all()
     }
-    return render(request, 'blog/posts.html', context)
+    return render(request, 'blog/posts.html', context) """
 
+
+# Formulario para crear nuevo post:
 @login_required
 def nuevo_posteo(request):
     if request.method == 'POST':
