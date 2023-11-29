@@ -3,7 +3,7 @@ from .forms import PostForm #para CreatePost
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Post
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 
 # With class based views, the system renders by default a template with the following convention name:
@@ -23,6 +23,10 @@ class PostListView(ListView):
         'manzanas': Post.objects.all()
     }
     return render(request, 'blog/posts.html', context) """
+    
+class PostDetailView(DetailView):
+    model = Post
+    
 
 
 # Formulario para crear nuevo post:
