@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import PostForm #para CreatePost
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Post
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 
 # With class based views, the system renders by default a template with the following convention name:
@@ -27,34 +26,19 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title', 'content']
+    # Overriding form_valid() method from CreateView, so only logged-in users can post new:
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    """ 
+    The `form_valid` method is a part of Django's class-based views, specifically the `FormView` class, which `CreateView` inherits from²³. 
 
+    In your `PostCreateView` class, you're overriding the `form_valid` method. This method is called when valid form data has been POSTed¹. It's used to define what happens if the form is valid²³.
 
-# Formulario para crear nuevo post:
-@login_required
-def nuevo_posteo(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
-        return redirect(reverse('main:casa'))
-    else:
-        form = PostForm()
-    return render(request, 'blog/post_form.html', {'formulario':form})
+    In the case of `CreateView`, the parent's `form_valid` method might do some processing (it will call `form.save()` for example)²³. So, when you call `super().form_valid(form)`, you're ensuring that this processing still occurs²³.
 
-"""
-    This view function handles the creation of a new post.
-
-    The function is decorated with the `login_required` decorator, which ensures that only authenticated users can access this view.
-
-    If the request method is 'POST', it means the form is being submitted. The function then checks if the form is valid. If it is, it saves the form but with commit=False to prevent it from being saved immediately. This is done so that the author of the post can be added before saving the post to the database.
-
-    If the form is not valid or if the request method is not 'POST' (which means the form is being accessed for the first time), an empty form is created and passed to the template.
-
-    Parameters:
-    request (WSGIRequest): A HTTP Request instance.
-
-    Returns:
-    HTTPResponse: The HTTP Response instance.
+    In your specific implementation, you're setting the `author` of the `Post` instance to be the currently logged-in user before calling the parent's `form_valid` method⁴. This means that when a post is created, it's automatically associated with the currently logged-in user.
     """
