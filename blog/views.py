@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from .models import Post
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
 # With class based views, the system renders by default a template with the following convention name:
@@ -43,11 +43,23 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
     
+    # Test function of the UserPassesTestMixin:
     def test_func(self) -> bool | None:
+        post = self.get_object() # Getting the post that we are trying to update. It will return a pk.
+        if self.request.user == post.author: # Checking if the current (logged in) user is the author of the post.
+            return True
+        return False
+    
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    success_url = '/blog/'
+    
+    def test_func(self):
         post = self.get_object()
         if self.request.user == post.author:
             return True
         return False
+    
     """ 
     The `form_valid` method is a part of Django's class-based views, specifically the `FormView` class, which `CreateView` inherits from²³. 
 

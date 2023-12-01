@@ -1,0 +1,28 @@
+{% extends "main/base.html" %}
+{% block titulo %}New Post{% endblock titulo %}
+
+{% block contenido %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Borrar Post</legend>
+                <h3>Esta seguro que quiere borrar el post <span class="text-primary">'{{ object.title }}'</span>?</h3>
+            </fieldset>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-danger">Si, borrar</button>
+                <a class="btn btn-outline-secondary" href="{% url 'blog:post-detalle' object.id %}">Cancelar</a>
+            </div>
+        </form>
+    </div>
+{% endblock contenido %}
+
+{% comment %} In Django, a DeleteView will render a default template based on the class name. The DeleteView page displayed to a GET request uses a template_name_suffix of '_confirm_delete'. So, if your model is named MyModel, the default template name would be mymodel_confirm_delete.html. If you want to use a different template, you can override this behavior by providing the template_name argument in your view1. For example:
+
+Python
+AI-generated code. Review and use carefully. More info on FAQ.
+
+class MyModelDeleteView(DeleteView):
+    model = MyModel
+    template_name = 'my_template.html'
+In this case, my_template.html will be used instead of the default template. {% endcomment %}
