@@ -15,4 +15,14 @@
             </div>
         </article>
     {% endfor %}
+    {% if is_paginated %}
+        {% if page_object.has_previous %}
+            <a class="btn btn-outline-info" href="?page=1">First</a> <!--?page= para que el url acepte parametros-->
+            <a class="btn btn-outline-info" href="?page={{page_obj.previous_page_number}}">Previous</a>
+        {% endif %}
+        
+    
+    
+    
+    {% endif %}
 {% endblock contenido %}

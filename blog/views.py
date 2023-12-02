@@ -12,6 +12,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 class PostListView(ListView):
     model = Post
     ordering = ['-date_posted'] # Orden negativo date_posted. Del ultimo al primer posteo. Como en los mails.
+    paginate_by = 5
     
     # IF OLD TEMPLATE AND LOOPING NAMES WOULD HAVE BEEN KEPT:
     # context_object_name = 'manzanas'
