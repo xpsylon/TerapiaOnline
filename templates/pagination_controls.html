@@ -1,0 +1,17 @@
+{% comment %} TEMPLATE FOR EMBEDDING PAGINATION {% endcomment %}
+
+{% if page_obj.has_previous %}
+    <a href="?page=1" class="btn btn-outline-info mb-4">Primera</a>
+    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info mb-4">Anterior</a>
+{% endif %}
+{% for i in page_obj.paginator.page_range %}
+    {% if page_obj.number == i %}
+        <a href="?page={{ i }}" class="btn btn-info mb-4">{{ i }}</a>
+    {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
+        <a href="?page={{ i }}" class="btn btn-outline-info mb-4">{{ i }}</a>
+    {% endif %}
+{% endfor %}
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info mb-4">Proxima</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-info mb-4">Ultima</a>
+{% endif %}

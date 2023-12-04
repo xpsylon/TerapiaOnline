@@ -6,31 +6,14 @@
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
             <div class="media-body">
-                <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ object.author }}</a>
-                    <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
-                </div>
+                {% include "blog/article_metadata.html" %}
                 <h2><a class="article-title" href="{% url 'blog:post-detalle' object.id %}">{{ object.title }}</a></h2>
                 <p class="article-content">{{ object.content }}</p>
             </div>
         </article>
     {% endfor %}
     {% if is_paginated %}
-        {% if page_obj.has_previous %}
-            <a href="?page=1" class="btn btn-outline-info">Primera</a>
-            <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info">Anterior</a>
-        {% endif %}
-        {% for i in page_obj.paginator.page_range %}
-            {% if page_obj.number == i %}
-                <a href="?page={{ i }}" class="btn btn-info">{{ i }}</a>
-            {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
-                <a href="?page={{ i }}" class="btn btn-outline-info">{{ i }}</a>
-            {% endif %}
-        {% endfor %}
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info">Proxima</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-info">Ultima</a>
-        {% endif %}
+        {% include "pagination_controls.html" %}
     {% endif %}
 
 

@@ -1,0 +1,32 @@
+{% extends "main/base.html" %}
+{% block titulo %}Blog{% endblock titulo %}
+
+{% block contenido %}
+<h2>Publicaciones de: {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h2>
+    {% for object in object_list %}
+        <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+            <div class="media-body">
+                {% include "blog/article_metadata.html" %}
+                <h2><a class="article-title" href="{% url 'blog:post-detalle' object.id %}">{{ object.title }}</a></h2>
+                <p class="article-content">{{ object.content }}</p>
+            </div>
+        </article>
+    {% endfor %}
+    {% if is_paginated %}
+        {% include "pagination_controls.html" %}
+    {% endif %}
+{% endblock contenido %}
+
+{% comment %} 
+In Django, when a class-based view is used, an instance of the view is actually what’s being called when the URL pattern is matched. This instance includes a number of attributes that can be accessed within the template. One of these attributes is kwargs, which is a dictionary of all keyword arguments passed to the view.
+
+In your URL configuration, you might have a path like this:
+
+path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
+Here, <str:username> is a path converter that captures a string argument username from the URL. This captured username is passed as a keyword argument to the UserPostListView.
+
+So, in your template, view.kwargs.username is accessing the username keyword argument that was captured from the URL. This is the username of the user whose posts you’re trying to display.
+
+For example, if you navigate to /user/johndoe, view.kwargs.username in the template would be 'johndoe'. This is used to display the username in the heading of the page: Posts by johndoe. It’s also used to get the count of posts by the user with page_obj.paginator.count. The page_obj is a Page object automatically provided by Django’s pagination system, and paginator is an attribute of Page that represents the Paginator instance. The count attribute of Paginator gives the total number of objects, across all pages. So, page_obj.paginator.count gives the total number of posts by the user. 
+{% endcomment %}

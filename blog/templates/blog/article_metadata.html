@@ -1,0 +1,15 @@
+{% comment %}
+TEMPLATE TO BE INCLUDED:
+This is the 'article_metadata.html' template. 
+
+It is used to display metadata for a blog article, including the author's name and the date the article was posted. The author's name is linked to a page showing all articles by this author.
+
+The 'object' variable in the context should be an instance of the Article model (or a similar model) with 'author' and 'date_posted' attributes.
+
+This template is designed to be included in other templates using the {% include %} tag, so it can be reused wherever article metadata needs to be displayed.
+{% endcomment %}
+
+    <div class="article-metadata">
+        <a class="mr-2" href="{% url 'blog:user-posts' object.author.username %}">{{ object.author }}</a>
+        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+    </div>

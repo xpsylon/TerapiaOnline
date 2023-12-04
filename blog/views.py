@@ -1,8 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.forms.models import BaseModelForm
-from django.http import HttpResponse
 from .models import Post
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
 
 
 # With class based views, the system renders by default a template with the following convention name:
@@ -61,6 +61,21 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
     
+class UserPostListView(ListView):
+    model = Post
+    paginate_by = 5
+    template_name = 'blog/user_posts.html'
+        
+    # Is a method that Django calls to get the list of items to display. In this case, it’s getting a list of Post objects:
+    def get_queryset(self):
+        # This line is getting the User object that matches the username passed in the URL. If no such user exists, it raises a 404 error:
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
+        
+    
+    
+    
+    
     """ 
     The `form_valid` method is a part of Django's class-based views, specifically the `FormView` class, which `CreateView` inherits from²³. 
 
@@ -77,3 +92,14 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     2. `test_func(self)`: This method is part of the `UserPassesTestMixin`. It's called to check if the current user passes a certain test condition. In this case, the test is whether the current user is the author of the post. If the user is the author, the method returns `True`; otherwise, it returns `False`. If the test fails (i.e., the method returns `False`), Django will redirect the user to a specified page.
     """
+
+
+    """  
+    user = get_object_or_404(User, username=self.kwargs.get('username')): This line is getting the User object that matches the username passed in the URL. If no such user exists, it raises a 404 error.
+    
+    So, if you were to navigate to a URL like http://yourwebsite.com/user/johndoe, Django would call the UserPostListView view with username='johndoe'. The get_object_or_404(User, username=self.kwargs.get('username')) line in the view would then attempt to fetch a User object with username='johndoe'. If no such user exists, it would raise a 404 error. If the user does exist, it would return the User object, and the view would proceed to fetch and display all posts authored by that user. 
+    """
+    
+    """ The ordering attribute in Django’s class-based views specifies the default ordering for the entire queryset. However, in this case, the ordering is not uniform for all objects in the queryset. The ordering depends on the specific user, which is determined dynamically based on the username parameter in the URL.
+
+    The get_queryset method allows for more complex queries and dynamic ordering. In this case, it’s used to filter the posts by author and then order them by date_posted. This wouldn’t be possible with a static ordering attribute because the author is not known until the view is called with a specific username. """
