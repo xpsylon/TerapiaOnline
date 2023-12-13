@@ -15,6 +15,11 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog:post-detalle', kwargs={"pk": self.pk})
     
+    # Metodo para que en la ListView se vea una version reducida del contenido (300 caracteres incluyendo espacios)
+    def short_content(self):
+        return self.content[:300]
+        
+    
     
        
     """ 
