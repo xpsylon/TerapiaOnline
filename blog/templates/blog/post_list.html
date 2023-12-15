@@ -7,7 +7,7 @@
             <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
             <div class="media-body">
                 {% include "blog/article_metadata.html" %}
-                {% comment %} Metodo de la ListView(object.get_absolute_url) {% endcomment %}
+                {% comment %} Metodo del Post model: (object.get_absolute_url) {% endcomment %}
                 <h2><a class="article-title" href="{{ object.get_absolute_url }}">{{ object.title }}</a></h2>
                 <p class="article-content">{{ object.short_content }}... <a href="{{ object.get_absolute_url }}">read more</a></p>
             </div>
