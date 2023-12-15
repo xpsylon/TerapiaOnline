@@ -3,6 +3,7 @@
     <h1>Therapists</h1>
     <ul>
         {% for i in terapeutas %}
+            <img src="{{ i.image.url }}" alt="">
             <li>{{ i.name }}, Especialidad: {{ i.speciality }}</li>
         {% endfor %}
     </ul>
