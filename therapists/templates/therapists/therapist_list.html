@@ -1,1 +1,9 @@
 {% extends "main/base.html" %}
+{% block contenido %}
+    <h1>Therapists</h1>
+    <ul>
+        {% for i in terapeutas %}
+            <li>{{ i.name }}, Especialidad: {{ i.speciality }}</li>
+        {% endfor %}
+    </ul>
+{% endblock contenido %}

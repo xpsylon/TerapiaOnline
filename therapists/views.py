@@ -3,7 +3,7 @@ from .models import Therapist
 
 def therapist_list(request):
     therapists = Therapist.objects.all()
-    return render(request, 'therapist_list.html', {'terapeutas':therapists})
+    return render(request, 'therapists/therapist_list.html', {'terapeutas':therapists})
 
 def therapist_detail(request):
     therapist = Therapist.objects.get(id=therapist.id)
