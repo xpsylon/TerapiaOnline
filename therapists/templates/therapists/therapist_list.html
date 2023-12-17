@@ -4,7 +4,10 @@
     <ul>
         {% for i in terapeutas %}
             <img src="{{ i.image.url }}" alt="">
-            <li>{{ i.name }}, Especialidad: {{ i.speciality }}</li>
+            <li><a href="{% url 'therapists:therapist_detail' i.id %}">{{ i.name }}</a>
+                <br>Especialidad: {{ i.speciality }}
+                <br> Disponibilidad: {{ i.availability}}
+            </li>
         {% endfor %}
     </ul>
 {% endblock contenido %}
