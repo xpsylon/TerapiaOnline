@@ -3,14 +3,14 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 class Therapist(models.Model):
-    name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='therapist_pics')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField()    
     speciality = models.CharField(max_length=100)
     availability = models.CharField(max_length=100)
-    bio = models.TextField()    
+    license_number = models.CharField(max_length=50, null=True, unique=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return f'{ self.user.first_name } { self.user.last_name }'
 
     def get_absolute_url(self):
         return reverse("therapist_detail", kwargs={"pk": self.pk})
