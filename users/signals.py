@@ -3,14 +3,14 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from .models import Profile
 
-@receiver(post_save, sender=User)
-def create_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
+# @receiver(post_save, sender=User)
+# def create_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
         
-@receiver(post_save, sender=User)
-def save_profile(sender, instance, **kwargs):
-    instance.profile.save()
+# @receiver(post_save, sender=User)
+# def save_profile(sender, instance, **kwargs):
+#     instance.profile.save()
     
 """ 
 1. `from django.db.models.signals import post_save`: This line is importing the `post_save` signal from Django. This signal is sent at the end of the `save()` method of a model. The signal is provided with the sender (the model class), instance (the actual instance being saved), created (a boolean indicating whether a new record was created), and many other keyword arguments.
