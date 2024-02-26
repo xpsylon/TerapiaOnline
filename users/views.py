@@ -36,3 +36,7 @@ def profile(request):
     context = {'form_usuario':user_form, 'form_perfil':prof_form }
     
     return render(request, 'users/profile.html', context)
+
+""" In Django, the request.user object represents the currently logged-in user. If the user is not logged in, this attribute is set to an instance of the AnonymousUser class.
+
+The request.user.profile suggests that there is a Profile model that is related to the User model. This is a common pattern in Django, where a Profile model is used to store user-related data that doesn’t come with Django’s built-in User mode """

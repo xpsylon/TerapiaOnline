@@ -26,7 +26,8 @@ urlpatterns = [
     #Getting the Django pre-built auth urls:
     path('', include('django.contrib.auth.urls')),
     path('', include('users.urls', namespace='users')),
-    path('blog/', include('blog.urls', namespace='blog'))
+    path('blog/', include('blog.urls', namespace='blog')),
+    path('', include('therapists.urls', namespace='therapists'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 """
